@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+<style>
+    body
+    {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background-color: teal;
+    }
+    .image-main
+    {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+    .image-item
+    {
+        width: 550px;
+        height: 500px;
+        object-fit: cover;
+    }
+    #leftside,#rightside
+    {
+        font-size: 32px;
+    }
+</style>
+<body>
+      <div class="container">
+           <div class="slider">
+                <div class="image-main">
+                    <span id="leftside"><i class="bi bi-arrow-left-circle-fill"></i></span>
+                    <img src="" alt="" class="image-item">
+                    <span id="rightside"><i class="bi bi-arrow-right-circle-fill"></i></span>
+                </div>
+           </div>
+      </div>
+</body>
+</html>
+<script>
+    let arr=["https://images.unsplash.com/photo-1713560625744-46175f1b4a37?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D","https://images.unsplash.com/photo-1714138100706-790c1b19056a?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D","https://images.unsplash.com/photo-1714138083505-fc47d575e3b1?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"]
+    
+    let leftside =document.querySelector("#leftside")
+    let rightside =document.querySelector("#rightside")
+    let image =document.querySelector(".image-item")
+    let index=0;
+
+    leftside.addEventListener("click",()=>{
+        index--;
+        if(index<0)
+        {
+            index=arr.length -1
+        }
+        image.src =arr[index]
+    })
+    rightside.addEventListener("click",()=>{
+        index++;
+        if(index>arr.length -1)
+        {
+            index=0
+        }
+        image.src =arr[index]
+    })
+
+</script>
