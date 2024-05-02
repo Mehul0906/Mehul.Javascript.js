@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+}
+
+#countdown {
+  display: flex;
+  justify-content: space-around;
+  font-size: 3rem;
+  margin-bottom: 2rem;
+}
+
+#countdown div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#quote {
+  font-size: 2rem;
+  text-align: center;
+  margin-top: 2rem;
+}
+</style>
+<body>
+    <!-- 4. **Functionality:**
+    - The countdown timer should update in real-time, showing the time remaining.
+    - Ensure that the quotes are randomly selected each time the page loads or refreshed. -->
+    <div id="countdown">
+        <div>
+          <span id="days"></span>
+          <div>Days</div>
+        </div>
+        <div>
+          <span id="hours"></span>
+          <div>Hours</div>
+        </div>
+        <div>
+          <span id="minutes"></span>
+          <div>Minutes</div>
+        </div>
+        <div>
+          <span id="seconds"></span>
+          <div>Seconds</div>
+        </div>
+      </div>
+      
+      <div id="quote"></div>
+      <button onclick="getRandomQuote()">Get Quote</button>
+
+</body>
+
+<script>
+    const quotes = [
+  "Believe you can and you're halfway there.",
+  "The only way to do great work is to love what you do.",
+  "Success is not the key to happiness. Happiness is the key to success.",
+  "The only limit to our realization of tomorrow will be our doubts of today.",
+  "Don't watch the clock; do what it does. Keep going."
+];
+
+function getRandomQuote() {
+  const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+  document.getElementById("quote").innerText = randomQuote;
+}
+
+// Display a random quote each day
+const today = new Date();
+const day = today.getDate();
+if (!localStorage.getItem("lastQuoteDay") || localStorage.getItem("lastQuoteDay")!== day) {
+  getRandomQuote();
+  localStorage.setItem("lastQuoteDay", day);
+}
+
+// Countdown timer
+const targetDate = new Date("2024-05-16T06:00:00").getTime();
+const countdown = document.getElementById("countdown");
+
+setInterval(() => {
+  const now = new Date().getTime();
+  const distance = targetDate - now;
+
+  const days = Math.floor(distance / (1000 * 3600 * 24));
+  const hours = Math.floor((distance % (1000 * 3600 * 24)) / (1000 * 3600));
+  const minutes = Math.floor((distance % (1000 * 3600)) / (1000 * 60));
+  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  document.getElementById("days").innerText = days;
+  document.getElementById("hours").innerText = hours;
+  document.getElementById("minutes").innerText = minutes;
+  document.getElementById("seconds").innerText = seconds;
+
+  if (distance < 0) {
+    clearInterval(countdown);
+    document.getElementById("countdown").innerText = "Countdown complete!";
+  }
+}, 1000);
+</script>
+</html>

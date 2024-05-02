@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+  body
+  {
+    background-color: teal;
+  }
+    #countdown {
+  display: flex;
+  justify-content: space-around;
+  font-size: 3rem;
+}
+
+#countdown div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+</style>
+<body>
+
+    <div id="countdown">
+        <div>
+          <span id="days"></span>
+          <div>Days</div>
+        </div>
+        <div>
+          <span id="hours"></span>
+          <div>Hours</div>
+        </div>
+        <div>
+          <span id="minutes"></span>
+          <div>Minutes</div>
+        </div>
+        <div>
+          <span id="seconds"></span>
+          <div>Seconds</div>
+        </div>
+      </div>
+      
+      <input type="date" id="targetDate" placeholder="Enter target date (YYYY-MM-DD HH:MM:SS)">
+      <button onclick="startCountdown()">Start Countdown</button>
+    
+</body>
+
+<script>
+    function startCountdown() {
+  const targetDate = new Date(document.getElementById("targetDate").value).getTime();
+  const countdown = document.getElementById("countdown");
+
+  setInterval(() => {
+    const now = new Date().getTime();
+    const distance = targetDate - now;
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    document.getElementById("days").innerText = days;
+    document.getElementById("hours").innerText = hours;
+    document.getElementById("minutes").innerText = minutes;
+    document.getElementById("seconds").innerText = seconds;
+
+    if (distance < 0) {
+      clearInterval(countdown);
+      document.getElementById("countdown").innerText = "Countdown complete!";
+    }
+  }, 1000);
+}
+</script>
+</html>
