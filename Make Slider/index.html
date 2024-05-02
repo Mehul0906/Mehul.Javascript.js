@@ -1,28 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        *
-        {
+        * {
             margin: 0%;
             padding: 0%;
             box-sizing: border-box;
         }
-        body{
+
+        body {
             background-color: teal;
         }
-        h1{
+
+        h1 {
             width: 100%;
             color: aqua;
             border-radius: 10px;
             padding: 20px 20px;
             text-align: center;
         }
-        .pic
-        {
+
+        .pic {
             height: 500px;
             width: 500px;
             margin: auto;
@@ -30,28 +32,32 @@
         }
     </style>
 </head>
+
 <body>
     <h1></h1>
     <img src="" alt="" class="pic">
 
     <script>
-        let namearr=["Hey, I'm Mehul Kurhe","Full Stack Developer","I like JavaScript."];
-        let i=0;
+        let arr = ["https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", "https://images.unsplash.com/photo-1556157382-97eda2d62296?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3Dhttps://images.unsplash.com/photo-1556157382-97eda2d62296?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"];
+        let index = 0;
         setInterval(() => {
-            document.querySelector("h1").innerHTML=namearr[i];
-            i++;
-            if(i==namearr.length){
-                i=0;
-            }
+            index = (index + 1) % arr.length
+            document.querySelector("img").src = arr[index]
         }, 2000);
 
-        let arr=["https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D","https://images.unsplash.com/photo-1556157382-97eda2d62296?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3Dhttps://images.unsplash.com/photo-1556157382-97eda2d62296?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D","https://images.unsplash.com/photo-1461749280684-dccba630e2f6?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"];
-        let index=0;
-        setInterval(() => {
-            // document.querySelector("h1").innerHTML=namearr[index];
-    index=(index+1)%arr.length
-    document.querySelector("img").src=arr[index]
-        }, 2000);
+
+
+
+          // let namearr = ["Hey, I'm Mehul Kurhe", "Full Stack Developer", "I like JavaScript."];
+        // let i = 0;
+        // setInterval(() => {
+        //     document.querySelector("h1").innerHTML = namearr[i];
+        //     i++;
+        //     if (i == namearr.length) {
+        //         i = 0;
+        //     }
+        // }, 2000);
     </script>
 </body>
+
 </html>
