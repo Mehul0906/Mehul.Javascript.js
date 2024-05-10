@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container{
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 20px;
+        }
+        .box{
+            border: 2px solid teal;
+            padding: 0 25px;
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="container"></div>
+
+    <script>
+        function FetchAPI(){
+            fetch('https://api.rootnet.in/covid19-in/stats/latest')
+            .then((res)=>res.json())
+            .then((data)=>CardList(data.data.regional))
+            .catch((err)=>console.log(err))
+        }
+        FetchAPI();
+
+        function CardList(data){
+            let store = data.map((el)=>SingalCard(el.loc,el.confirmedCasesIndian,el.confirmedCasesForeign,el.discharged,el.deaths,el.totalConfirmed))
+            document.querySelector('#container').innerHTML= store.join('');
+            console.log(store)
+        }
+
+        function SingalCard(loc,confirmedCasesIndian,confirmedCasesForeign,discharged,deaths,totalConfirmed){
+            return`
+            <div class="box">
+                <h2>Location : ${loc}</h2>
+                <h3>ConfirmedCasesIndian : ${confirmedCasesIndian}</h3>
+                <h3>ConfirmedCasesForeign : ${confirmedCasesForeign}</h3>
+                <h3>Discharged : ${discharged}</h3>
+                <h3>Deaths : ${deaths}</h3>
+                <h3>TotalConfirmed : ${totalConfirmed}</h3>
+            </div>
+            `
+        }
+    </script>
+</body>
+</html>
